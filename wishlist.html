@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #5d9f6e;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+        .wishlist-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .wishlist-item {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 200px;
+        }
+        .wishlist-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .wishlist-item h3 {
+            margin-top: 10px;
+            font-size: 1.2rem;
+        }
+        .wishlist-item button {
+            padding: 8px 15px;
+            background-color: #111010;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .wishlist-item button:hover {
+            background-color: #454342;
+        }
+        footer {
+            background-color: #5d9f6e;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Your Wishlist</h1>
+    </header>
+
+    <div class="wishlist-container" id="wishlist-items">
+        <!-- Wishlist items will be dynamically added here -->
+    </div>
+
+    <footer>
+        <p> <i>Welcome to HOME DECOR, Your One-Stop Destination for Home Decor and More!</i> </p> 
+        
+        <p> <i> Whether you’re looking to furnish a new home, update your living space, or find the perfect gift, HOME DECOR has something for every style and budget.  </i></p>
+        
+       <p> <i>We invite you to explore our collections and find the perfect pieces that will transform your house into the home of your dreams.</i></p> </i></p>
+
+    </footer>>
+
+    <script>
+        // Fetch wishlist items from localStorage
+        let wishlistItems = JSON.parse(localStorage.getItem('wishlistItems')) || [];
+        const wishlistContainer = document.getElementById('wishlist-items');
+
+        // Display wishlist items
+        wishlistItems.forEach(item => {
+            const wishlistItem = document.createElement('div');
+            wishlistItem.classList.add('wishlist-item');
+            wishlistItem.innerHTML = `
+                <img src="${item.imgSrc}" alt="${item.productName}">
+                <h3>${item.productName}</h3>
+                <button onclick="removeFromWishlist('${item.productName}')">Remove</button>
+            `;
+            wishlistContainer.appendChild(wishlistItem);
+        });
+
+        // Remove item from wishlist
+        function removeFromWishlist(productName) {
+            wishlistItems = wishlistItems.filter(item => item.productName !== productName);
+            localStorage.setItem('wishlistItems', JSON.stringify(wishlistItems));
+            location.reload(); // Refresh the page to reflect the changes
+        }
+    </script>
+
+</body>
+</html>

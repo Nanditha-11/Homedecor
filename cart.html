@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background-color: #5d9f6e;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        header a:hover {
+            text-decoration: underline;
+        }
+
+        /* Cart Container */
+        .cart-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 90%;
+            max-width: 700px;
+            flex-grow: 1;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Cart Item */
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            margin: 10px 0;
+            padding: 15px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item img {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .cart-item span {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .cart-item button {
+            padding: 8px 15px;
+            background-color: #100e0e;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cart-item button:hover {
+            background-color: #5f5c5b;
+        }
+
+        /* Total Price */
+        .total {
+            font-size: 1.5rem;
+            text-align: right;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Continue Shopping Button */
+        button.continue-shopping {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #262b2b;
+            color: white;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button.continue-shopping:hover {
+            background-color: #5d555e;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #5d9f6e;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 1rem;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cart.html">Cart</a>
+            <a href="wishlist.html">Wishlist</a>
+        </nav>
+    </header>
+
+    <!-- Cart Container -->
+    <div class="cart-container">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <p id="cart-total" class="total">Total: ₹0</p>
+        <button class="continue-shopping" onclick="window.location.href='index.html'">Continue Shopping</button>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p> <i>Welcome to HOME DECOR, Your One-Stop Destination for Home Decor and More!</i> </p> 
+        <p> <i> Whether you’re looking to furnish a new home, update your living space, or find the perfect gift, HOME DECOR has something for every style and budget.  </i></p>
+        <p> <i>We invite you to explore our collections and find the perfect pieces that will transform your house into the home of your dreams.</i></p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Fetch cart items from localStorage
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const cartList = document.getElementById('cart-items');
+        let totalPrice = 0;
+
+        // Display cart items
+        cartItems.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            cartItem.innerHTML = `
+                <img src="${item.imgSrc}" alt="${item.productName}">
+                <span>${item.productName} - ₹${item.price}</span>
+                <button onclick="removeFromCart('${item.productName}')">Remove</button>
+                <button onclick="buyNow('${item.productName}')">Buy Now</button>
+            `;
+            cartList.appendChild(cartItem);
+            totalPrice += item.price;
+        });
+
+        // Update the total price
+        document.getElementById('cart-total').innerText = `Total: ₹${totalPrice}`;
+
+        // Remove item from cart
+        function removeFromCart(productName) {
+            cartItems = cartItems.filter(item => item.productName !== productName);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            location.reload();
+        }
+
+        // Handle Buy Now operation
+        function buyNow(productName) {
+            // Find the item in the cart
+            const selectedItem = cartItems.find(item => item.productName === productName);
+
+            // Send to checkout with the selected item
+            if (selectedItem) {
+                // Assuming checkout page accepts the item via query string or session storage
+                localStorage.setItem('selectedItem', JSON.stringify(selectedItem));
+                window.location.href = `checkout.html?item=${productName}`;
+            }
+        }
+    </script>
+</body>
+</html>

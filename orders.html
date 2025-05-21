@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 2rem;
+            color: #333;
+        }
+
+        #orders-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .order {
+            background-color: white;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .order:hover {
+            transform: translateY(-10px);
+        }
+
+        .order img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .order h3 {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            color: #555;
+        }
+
+        .order p.price {
+            margin-top: 5px;
+            font-size: 1rem;
+            color: #e91e63;
+            font-weight: bold;
+        }
+
+        .order .confirmed-status {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: green;
+            font-weight: bold;
+        }
+
+        .remove-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .remove-btn:hover {
+            background-color: #d32f2f;
+        }
+
+        .empty-message {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #888;
+            margin-top: 20px;
+        }
+
+        .back-btn {
+            display: block;
+            width: 150px;
+            margin: 30px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>My Orders</h2>
+
+    <div id="orders-list"></div>
+
+    <a href="cart.html" class="back-btn">Back to Cart</a>
+
+    <script>
+        // Function to remove order from localStorage
+        function removeOrder(index) {
+            let orders = JSON.parse(localStorage.getItem('orders')) || [];
+            orders.splice(index, 1); // Remove item at the specified index
+            localStorage.setItem('orders', JSON.stringify(orders));
+            displayOrders(); // Refresh the orders list
+        }
+
+        // Display orders on the "My Orders" page
+        function displayOrders() {
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            const ordersListDiv = document.getElementById("orders-list");
+
+            if (orders.length === 0) {
+                ordersListDiv.innerHTML = "<p class='empty-message'>No orders placed yet.</p>";
+                return;
+            }
+
+            ordersListDiv.innerHTML = ""; // Clear previous orders
+            
+            orders.forEach((order, index) => {
+                const orderDiv = document.createElement("div");
+                orderDiv.className = "order";
+                orderDiv.innerHTML = `
+                    <img src="${order.imgSrc}" alt="${order.productName}">
+                    <h3>${order.productName}</h3>
+                    <p class="price">₹${order.price}</p>
+                    <p class="confirmed-status">Order Confirmed</p> <!-- Status Message -->
+                    <button class="remove-btn" onclick="removeOrder(${index})">Remove</button>
+                `;
+                ordersListDiv.appendChild(orderDiv);
+            });
+        }
+
+        // Call function to display orders when the page loads
+        window.onload = displayOrders;
+    </script>
+
+</body>
+</html>

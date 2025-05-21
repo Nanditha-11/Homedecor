@@ -1,0 +1,44 @@
+/* Success message styling (applies to both login and register success) */
+.success-message {
+    background-color: #4CAF50; /* Green background for success */
+    color: white;
+    padding: 15px;
+    text-align: center;
+    margin: 20px auto;
+    width: 50%;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Error message styling */
+.error-message {
+    background-color: #ff4c4c; /* Red background for errors */
+    color: white;
+    padding: 15px;
+    text-align: center;
+    margin: 20px auto;
+    width: 50%;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Welcome message */
+.welcome-message {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+/* Link styling for navigation */
+.welcome-message a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.welcome-message a:hover {
+    text-decoration: underline;
+}
+

@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Decor Store</title>
+    <style>
+        /* Basic Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fafafa;
+            color: #333;
+        }
+
+        header {
+            background-color: #6cb87f; /* Soft Coral */
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .search-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.home-decor-tag {
+    font-size: 24px; /* Adjust the font size */
+    font-weight: bold;
+    color: #faf0f0; /* Adjust color as needed */
+    margin-right: 20px; /* Adds some space between the tag and the search bar */
+}
+
+#search-bar {
+    flex-grow: 1; /* Makes the search bar take available space */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.account-links button {
+    margin-left: 10px;
+    padding: 10px 15px;
+    font-size: 14px;
+}
+
+        
+        #search-bar:focus {
+            border-color: #ff6f61;
+            outline: none;
+        }
+
+        .account-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .account-links button {
+            margin-left: 15px;
+            padding: 12px 20px;
+            background-color: #0a0a06; /* Green */
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .account-links button:hover {
+            background-color: #393c39;
+        }
+
+        section {
+            padding: 20px;
+            margin: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Add background for Categories title */
+        h2 {
+            font-size: 2rem;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            background-color: #8cceb0; /* Add desired background color */
+            padding: 10px 0; /* Add padding for spacing */
+            border-radius: 8px; /* Optional: rounded corners for a smoother effect */
+            width: 60%; /* Adjust the width to control the size of the background */
+            margin-left: auto; /* Center the title */
+            margin-right: auto; /* Center the title */
+        }
+
+        .category-list {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    background-color: #65a77c; /* Light background around categories */
+    padding: 30px 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+        .category {
+            text-align: center;
+            background-color: #65a77c;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .category img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: transform 0.3s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .category img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .category p {
+            font-size: 1rem;
+            color: #f8f2f2;
+            margin-top: 8px;
+        }
+
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .product {
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .product h3 {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .product p {
+            font-size: 0.95rem;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            color: #ff6f61; /* Soft Coral */
+            font-weight: bold;
+        }
+
+        .discount {
+            font-size: 1rem;
+            color: #4caf50; /* Green */
+            font-weight: bold;
+        }
+
+        button {
+            padding: 12px 24px;
+            background-color: #4d8dd5; /* Blue */
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background-color: #6baeed;
+        }
+
+        .wishlist-btn {
+            padding: 12px 24px;
+            background-color: #dca24b; /* Orange */
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .wishlist-btn:hover {
+            background-color: #d7924d;
+        }
+.notification {
+    position: fixed;
+    bottom: 20px; /* Adjust to top for top notification */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #971212; /* Green background */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 9999;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.notification.fade-out {
+    opacity: 0;
+}
+/* styles.css */
+.notification {
+    position: fixed;
+    bottom: 20px; /* Adjust to top for top notification */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #971212; /* Green background */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 9999;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.notification.fade-out {
+    opacity: 0;
+}
+
+        footer {
+            background-color: #5d9f6e; /* Soft Coral */
+            padding: 20px 0;
+            color: white;
+            text-align: center;
+        }
+
+        footer h2 {
+            font-size: 1.8rem;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        
+        <div class="search-container">
+            <div class="home-decor-tag">
+                <h2> <i>HOME DECOR</i> </h2>
+            </div>
+            <input type="text" id="search-bar" placeholder="Search for categories..." oninput="filterCategories()">
+            <div class="account-links">
+                <button onclick="window.location.href='login.html'">Login</button>
+                <button onclick="toggleWishlist()">My Wishlist</button>
+                <button onclick="window.location.href='cart.html'">Cart</button>
+                <button onclick="window.location.href='orders.html'">My Orders</button>
+            </div>
+        </div>
+        
+    </header>
+
+    <main>
+        <!-- Categories List -->
+        <section>
+            <h2><i>Categories</i></h2>
+            
+            <div class="category-list" id="category-list">
+                <div class="category" data-category="furniture" onclick="showProducts('furniture')">
+                    <img src="furniture.jpg" alt="Furniture">
+                    <p>Furniture</p>
+                </div>
+                <div class="category" data-category="decor-items" onclick="showProducts('decor-items')">
+                    <img src="decor items.jpg" alt="Decor Items">
+                    <p>Decor Items</p>
+                </div>
+                <div class="category" data-category="kitchenware" onclick="showProducts('kitchenware')">
+                    <img src="kitchen utilities.jpg" alt="Kitchenware">
+                    <p>Kitchenware</p>
+                </div>
+                <div class="category" data-category="gift-items" onclick="showProducts('gift-items')">
+                    <img src="gift items.jpg" alt="Gift Items">
+                    <p>Gift Items</p>
+                </div>
+                <div class="category" data-category="lights" onclick="showProducts('lights')">
+                    <img src="lights.jpg" alt="Lights">
+                    <p>Lights</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product List (Hidden Initially) -->
+        <section id="product-list">
+            <!-- Products will show up here when a category is clicked -->
+        </section>
+    </main>
+
+    <footer>
+    
+        <p> <i>Welcome to HOME DECOR, Your One-Stop Destination for Home Decor and More!</i> </p> 
+        
+        <p> <i> Whether you’re looking to furnish a new home, update your living space, or find the perfect gift, HOME DECOR has something for every style and budget.  </i></p>
+        
+       <p> <i>We invite you to explore our collections and find the perfect pieces that will transform your house into the home of your dreams.</i></p> </i></p>
+
+    </footer>
+
+    <script>
+
+
+        let wishlistItems = JSON.parse(localStorage.getItem('wishlistItems')) || [];
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+        // Show Products Based on Category Clicked
+        function showProducts(category) {
+            const productList = document.getElementById('product-list');
+            let content = '';
+
+            if (category === 'furniture') {
+                content = `
+                    <h2>Furniture</h2>
+                    <div class="product-list">
+                        <div class="product">
+                            <img src="sofa.jpg" alt="Modern Sofa">
+                            <h3>Modern Sofa</h3>
+                            <p>Stylish and comfortable sofa for your living room.</p>
+                            <p class="price">₹25,000</p>
+                            <button onclick="addToCart('Modern Sofa', 25000, 'sofa.jpg')">Add to Cart</button>
+                            <button class="wishlist-btn" onclick="addToWishlist('Modern Sofa', 'sofa.jpg')">Add to Wishlist</button>
+                        </div>
+                        <div class="product">
+                            <img src="Dining Table.jpg" alt="Dining Table">
+                            <h3>Dining Table</h3>
+                            <p>Elegant dining table for a modern home.</p>
+                            <p class="price">₹20,000</p>
+                            <button onclick="addToCart('Dining Table', 20000, 'Dining Table.jpg')">Add to Cart</button>
+                            <button class="wishlist-btn" onclick="addToWishlist('Dining Table', 'Dining Table.jpg')">Add to Wishlist</button>
+                        </div>
+                        <div class="product">
+                            <img src="Chair.jpg" alt="Chair">
+                            <h3>Chair</h3>
+                            <p>Comfortable chair for your living room.</p>
+                            <p class="price">₹10,000</p>
+                            <button onclick="addToCart('Chair', 10000, 'Chair.jpg')">Add to Cart</button>
+                            <button class="wishlist-btn" onclick="addToWishlist('Chair', 'Chair.jpg')">Add to Wishlist</button>
+                        </div>
+                        <div class="product">
+                            <img src="Cabinet.jpg" alt="TV Unit">
+                            <h3>Cabinet</h3>
+                            <p>Cabinet for your living space.</p>
+                            <p class="price">₹5,000</p>
+                            <button onclick="addToCart('Cabinet', 5000, 'Cabinet.jpg')">Add to Cart</button>
+                            <button class="wishlist-btn" onclick="addToWishlist('Cabinet', 'Cabinet.jpg')">Add to Wishlist</button>
+                        </div>
+                        <div class="product">
+                            <img src="Dressing Table.jpg" alt="Dressing Table">
+                            <h3>Dressing Table</h3>
+                            <p>Modern Dressing Table .</p>
+                            <p class="price">₹7,500</p>
+                            <button onclick="addToCart('Dressing Table', 7500, 'Dressing Table.jpg')">Add to Cart</button>
+                            <button class="wishlist-btn" onclick="addToWishlist('Dressing Table', 'Dressing Table.jpg')">Add to Wishlist</button>
+                        </div>
+                        <div class="product">
+                            <img src="Bed.jpg" alt="Bed">
+                            <h3>Bed</h3>
+                            <p>Comfortable bed for restful sleep.</p>
+                            <p class="price">₹40,000</p>
+                            <button onclick="addToCart('Bed', 40000, 'Bed.jpg')">Add to Cart</button>
+                            <button class="wishlist-btn" onclick="addToWishlist('Bed', 'Bed.jpg')">Add to Wishlist</button>
+                        </div>
+                    </div>
+                `;
+            } 
+
+
+            else if (category === 'kitchenware') {
+                content = `
+                    <h2>Kitchenware</h2>
+                    <div class="product-list">
+                        <div class="product">
+                            <img src="Serving Bowl.jpg" alt="Serving Bowls">
+                            <h3>Serving Bowls</h3>
+                            <p>Set of elegant serving bowls for your dining table.</p>
+                            <p class="price">₹800</p>
+                            <button onclick="addToCart('Serving Bowl', 800, 'Serving Bowl.jpg')">Add to Cart</button>
+                            <button class="wishlist-btn" onclick="addToWishlist('Serving Bowl', 'Serving Bowl.jpg')">Add to Wishlist</button>
+                        </div>
+                        <div class="product">
+                            <img src="Glass Jar.jpg" alt="Glass Jar">
+                            <h3>Glass Jar</h3>
+                            <p>Store dry foods and spices with this elegant jar.</p>
+                            <p class="price">₹500</p>
+                            <button onclick="addToCart('Glass Jar', 500, 'Glass Jar.jpg')">Add to Cart</button>
+                            <button class="wishlist-btn" onclick="addToWishlist('Glass Jar', 'Glass Jar.jpg')">Add to Wishlist</button>
+                        </div>
+                        <div class="product">
+                            <img src="Cups.jpg" alt="Cups">
+                            <h3>Cups</h3>
+                            <p>Perfect set of cups for your morning tea.</p>
+                            <p class="price">₹300</p>
+                            <button onclick="addToCart('Cups', 300, 'Cups.jpg')">Add to Cart</button>
+                            <button class="wishlist-btn" onclick="addToWishlist('Cups', 'Cups.jpg')">Add to Wishlist</button>
+                        </div>
+                        <div class="product">
+                            <img src="Copper Bottle.jpg" alt="Copper Bottle">
+                            <h3>Copper Bottle</h3>
+                            <p>Eco-friendly copper bottle for your water.</p>
+                            <p class="price">₹800</p>
+                            <button onclick="addToCart('Copper Bottle', 800, 'Copper Bottle.jpg')">Add to Cart</button>
+                            <button class="wishlist-btn" onclick="addToWishlist('Copper Bottle', 'copper Bottle.jpg')">Add to Wishlist</button>
+                        </div>
+                        <div class="product">
+                            <img src="Ceramic Plate.jpg" alt="Ceramic Plate">
+                            <h3>Ceramic Plate</h3>
+                            <p>Elegant ceramic plates for your kitchen.</p>
+                            <p class="price">₹350</p>
+                            <button onclick="addToCart('Ceramic Plate', 350, 'Ceramic-Plate.jpg')">Add to Cart</button>
+                            <button class="wishlist-btn" onclick="addToWishlist('Ceramic Plate', 'Ceramic Plate.jpg')">Add to Wishlist</button>
+                        </div>
+                        <div class="product">
+                            <img src="Cooking Pan.jpg" alt="Cooking Pan">
+                            <h3>Cooking Pan</h3>
+                            <p>Non-stick pan for easy cooking and cleaning.</p>
+                            <p class="price">₹750</p>
+                            <button onclick="addToCart('Cooking Pan', 750, 'Cooking Pan.jpg')">Add to Cart</button>
+                            <button class="wishlist-btn" onclick="addToWishlist('Cooking Pan', 'Cooking Pan.jpg')">Add to Wishlist</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Decor Items
+            else if (category === 'decor-items') {
+                content = `
+                    <h2>Decor Items</h2>
+                    <div class="product-list">
+                        <div class="product">
+                            <img src="Candle Holder.jpg" alt="Candle Holder">
+                            <h3>Candle Holder</h3>
+                            <p>Elegant candle holder for your home decor.</p>
+                            <p class="price">₹1000</p>
+                            <button onclick="addToCart('Candle Holder', 1000, 'Candle Holder.jpg')">Add to Cart</button>
+                            <button class="wishlist-btn" onclick="addToWishlist('Candle Holder', 'Candle Holder.jpg')">Add to Wishlist</button>
+                        </div>
+                        <div class="product">
+                            <img src="Wall Hanging.jpg" alt="Wall Hanging">
+                            <h3>Wall Hanging</h3>
+                            <p>Stylish Wall Hanging for your living room.</p>
+                            <p class="price">₹1500</p>
+                            <button onclick="addToCart('Wall Hanging', 1500, 'Wall Hanging.jpg')">Add to Cart</button>
+                            <button class="wishlist-btn" onclick="addToWishlist('Wall Hanging', 'Wall Hanging.jpg')">Add to Wishlist</button>
+                        </div>
+                        <div class="product">
+                            <img src="flower vase.jpg" alt="Flower Vase">
+                            <h3>Flower Vase</h3>
+                            <p>Beautiful Flower Vase for your flowers.</p>
+                            <p class="price">₹600</p>
+                            <button onclick="addToCart('Flower Vase', 600, 'flower vase.jpg')">Add to Cart</button>
+                            <button class="wishlist-btn" onclick="addToWishlist('Flower Vase', 'flower vase.jpg')">Add to Wishlist</button>
+                        </div>
+                        <div class="product">
+                            <img src="Photo Frame.jpg" alt="Photo Frame">
+                            <h3>Photo Frame</h3>
+                            <p>Elegant photo frame for your memories.</p>
+                            <p class="price">₹400</p>
+                            <button onclick="addToCart('Photo Frame', 400, 'Photo Frame.jpg')">Add to Cart</button>
+                            <button class="wishlist-btn" onclick="addToWishlist('Photo Frame', 'Photo Frame.jpg')">Add to Wishlist</button>
+                        </div>
+                        <div class="product">
+                            <img src="Planter.jpg" alt="Planter">
+                            <h3>Planter</h3>
+                            <p>Beautiful planter for your indoor plants.</p>
+                            <p class="price">₹300</p>
+                            <button onclick="addToCart('Planter', 300, 'Planter.jpg')">Add to Cart</button>
+                            <button class="wishlist-btn" onclick="addToWishlist('Planter', 'Planter'.jpg')">Add to Wishlist</button>
+                        </div>
+                        <div class="product">
+                            <img src="Table Lamp.jpg" alt="Table Lamp">
+                            <h3>Table Lamp</h3>
+                            <p>Elegant table lamp for your workspace.</p>
+                            <p class="price">₹800</p>
+                            <button onclick="addToCart('Table Lamp', 800, 'Table Lamp.jpg')">Add to Cart</button>
+                            <button class="wishlist-btn" onclick="addToWishlist('Table Lamp', 'Table Lamp.jpg')">Add to Wishlist</button>
+                        </div>
+                    </div>
+                `;
+            }
+             
+             else if (category === 'lights') {
+                content = `
+                   <h2>Lights</h2>
+    <div class="product-list">
+        <!-- First Row of Products -->
+        <div class="product">
+            <img src="Ceiling Light.jpg" alt="Ceiling Light">
+            <h3>Ceiling Light</h3>
+            <p>Elegant ceiling light to brighten up your space.</p>
+            <p class="price">₹1,500</p>
+            <button onclick="addToCart('Ceiling Light', 1500, 'Ceiling Light.jpg')">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist('Ceiling Light', 'Ceiling Light.jpg')">Add to Wishlist</button>
+        </div>
+        <div class="product">
+            <img src="Hanging Light.jpg" alt="Hanging Light">
+            <h3>Hanging Light</h3>
+            <p>Modern hanging light for a stylish look.</p>
+            <p class="price">₹3,000</p>
+            <button onclick="addToCart('Hanging Light', 3000, 'Hanging Light.jpg')">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist('Hanging Light', 'Hanging Light.jpg')">Add to Wishlist</button>
+        </div>
+        <div class="product">
+            <img src="Wall Light.jpg" alt="Wall Light">
+            <h3>Wall Light</h3>
+            <p>Wall-mounted light for ambient lighting.</p>
+            <p class="price">₹1,800</p>
+            <button onclick="addToCart('Wall Light', 1800, 'Wall Light.jpg')">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist('Wall Light', 'Wall Light.jpg')">Add to Wishlist</button>
+        </div>
+
+        <!-- Second Row of Products -->
+        <div class="product">
+            <img src="Chandelier.jpg" alt="Chandelier">
+            <h3>Chandelier</h3>
+            <p>Elegant chandelier to add luxury to your home.</p>
+            <p class="price">₹8,500</p>
+            <button onclick="addToCart('Chandelier', 8500, 'Chandelier.jpg')">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist('Chandelier', 'Chandelier.jpg')">Add to Wishlist</button>
+        </div>
+        <div class="product">
+            <img src="Outdoor Light.jpg" alt="Outdoor Light">
+            <h3>Outdoor Light</h3>
+            <p>Perfect lighting for your outdoor spaces.</p>
+            <p class="price">₹2,200</p>
+            <button onclick="addToCart('Outdoor Light', 2200, 'Outdoor Light.jpg')">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist('Outdoor Light', 'Outdoor Light.jpg')">Add to Wishlist</button>
+        </div>
+        <div class="product">
+            <img src="Floor Lamp.jpg" alt="Floor lamp">
+            <h3>Floor lamp</h3>
+            <p>Energy-efficient Floor lamp for your room.</p>
+            <p class="price">₹1,200</p>
+            <button onclick="addToCart('Floor lamp', 1200, 'Floor Lamp.jpg')">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist('Floor lamp', 'Floor Lamp.jpg')">Add to Wishlist</button>
+        </div>
+        
+                    </div>
+                `;
+            }
+            else if (category === 'gift-items') {
+                content = `
+                 
+    <h2>Gift Items</h2>
+    <div class="product-list">
+        <div class="product">
+            <img src="Bowl Set.jpg" alt="Bowl Set">
+            <h3>Bowl Set </h3>
+            <p>Perfect gift for any occasion!</p>
+            <p class="price">₹1500</p>
+            <button onclick="addToCart('Bowl Set', 1500, 'Bowl Set.jpg')">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist('Bowl Set', 'Bowl Set.jpg')">Add to Wishlist</button>
+        </div>
+        <div class="product">
+            <img src="Metal Wall Art.jpg" alt="Metal Wall Art">
+            <h3>Metal Wall Art</h3>
+            <p>Celebrate special moments with this thoughtful gift.</p>
+            <p class="price">₹1,000</p>
+            <button onclick="addToCart('Metal Wall Art', 1000, 'Metal Wall Art.jpg')">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist('Metal Wall Art', 'Metal Wall Art.jpg')">Add to Wishlist</button>
+        </div>
+        <div class="product">
+            <img src="Candles.jpg" alt="Candles">
+            <h3>Candles</h3>
+            <p>A beautiful gift for your loved ones.</p>
+            <p class="price">₹800</p>
+            <button onclick="addToCart('Candles', 800, 'Candles.jpg')">Add to Cart</button>
+            <button class="wishlist-btn" onclick="addToWishlist('Candles', 'Candles.jpg')">Add to Wishlist</button>
+        </div>
+
+                `;
+            }
+            productList.innerHTML = content;
+        }
+
+// Add Item to Wishlist
+function addToWishlist(productName, imgSrc) {
+    if (!wishlistItems.some(item => item.productName === productName)) {
+        wishlistItems.push({ productName, imgSrc });
+        localStorage.setItem('wishlistItems', JSON.stringify(wishlistItems));
+
+        // Create a notification element for wishlist
+        const notification = document.createElement('div');
+        notification.classList.add('notification');
+        notification.innerText = `${productName} has been added to your wishlist.`;
+
+        // Append the notification to the body
+        document.body.appendChild(notification);
+
+        // Fade out the notification after 3 seconds
+        setTimeout(() => {
+            notification.classList.add('fade-out');
+        }, 3000);
+
+        // Remove the notification after it's faded out
+        setTimeout(() => {
+            notification.remove();
+        }, 3500);
+    } else {
+        // Notification for already in wishlist (optional)
+        const notification = document.createElement('div');
+        notification.classList.add('notification');
+        notification.innerText = `${productName} is already in your wishlist.`;
+
+        // Append and fade out the notification
+        document.body.appendChild(notification);
+        setTimeout(() => {
+            notification.classList.add('fade-out');
+        }, 3000);
+        setTimeout(() => {
+            notification.remove();
+        }, 3500);
+    }
+}
+
+// Add Item to Cart
+function addToCart(productName, price, imgSrc) {
+    const item = { productName, price, imgSrc };
+    cartItems.push(item);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+    // Create a notification element
+    const notification = document.createElement('div');
+    notification.classList.add('notification');
+    notification.innerText = `${productName} has been added to your cart.`;
+
+    // Append the notification to the body
+    document.body.appendChild(notification);
+
+    // Fade out the notification after 3 seconds
+    setTimeout(() => {
+        notification.classList.add('fade-out');
+    }, 3000);
+
+    // Remove the notification after it's faded out
+    setTimeout(() => {
+        notification.remove();
+    }, 3500);
+}
+
+        // Filter Categories Based on Search
+        function filterCategories() {
+            const searchTerm = document.getElementById('search-bar').value.toLowerCase();
+            const categories = document.querySelectorAll('.category');
+            categories.forEach(category => {
+                const categoryName = category.getAttribute('data-category').toLowerCase();
+                if (categoryName.includes(searchTerm)) {
+                    category.style.display = 'block'; // Show category
+                } else {
+                    category.style.display = 'none'; // Hide category
+                }
+            });
+        }
+
+        // Toggle Wishlist (redirect to wishlist page)
+        function toggleWishlist() {
+            window.location.href = 'wishlist.html';
+        }
+    </script>
+</body>
+</html>
